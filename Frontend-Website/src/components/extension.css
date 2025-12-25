@@ -1,0 +1,166 @@
+/* Extension section wrapper */
+.extension-section {
+  width: 100%;
+  padding: 90px 20px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Card-style container */
+.extension-inner {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  color: whitesmoke;
+
+  /* your visual styles preserved */
+  background: rgba(255, 255, 255, 0.08);
+  padding: 60px 25px;
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+
+  transition: transform 0.35s cubic-bezier(.2,.9,.2,1),
+              box-shadow 0.35s cubic-bezier(.2,.9,.2,1);
+  will-change: transform, box-shadow;
+}
+
+/* hover / lift effect (desktop) */
+.extension-inner:hover {
+  transform: translateY(-10px) scale(1.015);
+  box-shadow: 0 22px 45px rgba(0,0,0,0.65);
+}
+
+/* Title */
+.extension-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: rgb(231,150,0);
+  margin-bottom: 20px;
+}
+
+/* Subtitle */
+.extension-sub {
+  font-size: 15px;
+  color: #d0d0d0;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* Button container */
+.extension-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Base button style */
+.ext-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 26px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  white-space: nowrap;
+}
+
+/* Chrome button */
+.ext-btn.chrome {
+  background: rgb(255, 166, 0);
+}
+
+/* Hover (desktop) */
+.ext-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 20px rgba(236, 184, 54, 0.45);
+}
+
+/* Icon */
+.ext-icon {
+  font-size: 26px;
+}
+
+/* ----------------------------- */
+/* Responsive & touch-friendly tweaks */
+/* ----------------------------- */
+
+/* Mobile (<= 576px): reduce padding, font sizes and make button fill width */
+@media (max-width: 576px) {
+  .extension-section {
+    padding: 40px 12px;
+  }
+
+  .extension-inner {
+    padding: 28px 16px;
+    border-radius: 14px;
+    max-width: 92%;
+  }
+
+  .extension-title {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .extension-sub {
+    font-size: 14px;
+    margin-bottom: 18px;
+    max-width: 100%;
+    padding: 0 6px;
+    line-height: 1.5;
+  }
+
+  .ext-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .ext-icon { font-size: 20px; }
+}
+
+/* Small tablets: slightly smaller paddings and button sizes */
+@media (min-width: 577px) and (max-width: 900px) {
+  .extension-section { padding: 60px 18px; }
+  .extension-inner { padding: 36px 20px; max-width: 720px; }
+  .extension-title { font-size: 26px; }
+  .extension-sub { font-size: 14px; max-width: 640px; margin-bottom: 26px; }
+  .ext-btn { padding: 14px 22px; font-size: 17px; }
+}
+
+/* Reduce heavy hover & transform on touch devices for better UX */
+@media (pointer: coarse) {
+  .extension-inner,
+  .extension-inner:hover {
+    transform: none !important;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.55) !important;
+  }
+  .ext-btn,
+  .ext-btn:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .extension-inner,
+  .ext-btn {
+    transition: none !important;
+  }
+}
+
+/* Slight breathing room on very large screens */
+@media (min-width: 1400px) {
+  .extension-inner { padding: 80px 40px; max-width: 1100px; }
+  .extension-title { font-size: 36px; }
+}

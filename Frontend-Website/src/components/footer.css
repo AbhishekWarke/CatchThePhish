@@ -1,0 +1,136 @@
+/* Center the footer box and limit to 80% width */
+.footer-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+/* White card footer */
+.new-footer {
+  width: 80%;               /* centered card at 80% width */
+  background: #ffffff;
+  padding: 50px 30px;
+  border-radius: 35px;
+  text-align: center;
+  color: #333;
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
+}
+
+.new-footer:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Branding */
+.footer-logo { height: 40px; margin-bottom: 8px; }
+.footer-title { font-size: 22px; font-weight: 700; color: rgb(249, 162, 0); margin-bottom: 6px; }
+.footer-tagline { font-size: 13px; color: #777; max-width: 400px; margin: 0 auto 25px; }
+
+/* Sections layout */
+.footer-sections {
+  display: flex;
+  justify-content: space-around;
+  margin: 25px 0 35px;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-group h4 { color: rgb(249, 162, 0); margin-bottom: 10px; }
+
+.footer-group a {
+  display: block;
+  color: #555;
+  font-size: 14px;
+  margin: 4px 0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-group a:hover { color: #d54e4e; }
+
+/* ---------------- Socials & dropdowns ---------------- */
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 18px;
+  position: relative;
+  align-items: center; /* ensure vertical alignment */
+}
+
+/* generic main social icon style */
+.social-main {
+  font-size: 26px;
+  color: rgb(249, 162, 0);
+  cursor: pointer;
+  transition: transform 0.18s ease, color 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* hover lift */
+.social-main:hover {
+  color: #d54e4e;
+  transform: translateY(-3px);
+}
+
+/* dropdown wrapper (keeps icon baseline consistent) */
+/* dropdown wrapper */
+.social-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;    /* EXPANDS HOVER ZONE BELOW ICON */
+}
+
+/* shared dropdown menu styling */
+.social-menu {
+  position: absolute;
+  top: 32px;              /* directly touching bottom of icon */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  min-width: 170px;
+  text-align: left;
+  z-index: 9999;
+
+  /* Small upward animation */
+  transform-origin: top;
+  transform: translateX(-50%) scale(0.97);
+}
+
+/* show menu on hover */
+.social-dropdown:hover .social-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) scale(1);
+}
+
+/* menu links */
+.social-menu a {
+  color: rgb(249, 162, 0);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 6px;
+  border-radius: 6px;
+  transition: background 0.14s ease, color 0.14s ease;
+}
+
+.social-menu a:hover {
+  background: rgba(249,162,0,0.12);
+  color: #d54e4e;
+}

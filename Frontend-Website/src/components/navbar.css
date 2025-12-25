@@ -1,0 +1,119 @@
+/* ================================
+   CATCH THE PHISH — CLEAN NAVBAR
+   Spaced Menu Version (Full Width)
+   ================================ */
+
+/* MAIN NAVBAR CARD */
+.navbar {
+  background: #ffffff !important;
+  border-radius: 55px;
+  padding: 0.45rem 1.2rem !important;   /* slim height */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  width: 90%;
+  margin: 22px auto;                    /* centers navbar */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* BRAND (logo + text) */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  color: rgb(236, 172, 53) !important;
+}
+
+/* LOGO IMAGE */
+.logoImg {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ================================
+   NAV LINKS (EVENLY SPACED)
+   ================================ */
+
+/* Make menu fill the entire available space */
+.navbar-nav {
+  flex: 1;                                  /* take full remaining width */
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;            /* even spacing */
+  margin-left: 40px;                        /* push menu away from logo */
+}
+
+/* Individual nav links */
+.nav-link {
+  color: rgb(249, 162, 0) !important;
+  font-size: 1.05rem;
+  font-weight: 500;
+  opacity: 0.9;
+  transition: color 0.25s ease;
+  padding: 0.4rem 0.6rem !important;
+}
+
+.nav-link:hover {
+  color: #d54e4e !important;
+  opacity: 1;
+}
+
+/* REMOVE UGLY DEFAULT BOOTSTRAP BLUE OUTLINE */
+.navbar-toggler:focus,
+.nav-link:focus {
+  box-shadow: none !important;
+}
+
+/* ================================
+   RESPONSIVE BEHAVIOR
+   ================================ */
+
+@media (max-width: 992px) {
+  .navbar {
+    width: 94%;
+    padding: 0.45rem 1rem !important;
+  }
+
+  .navbar-nav {
+    justify-content: center;
+    gap: 20px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    border-radius: 35px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    margin-left: 0;
+  }
+
+  .nav-link {
+    padding-left: 6px !important;
+  }
+
+  .logoImg {
+    height: 48px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    border-radius: 25px;
+    width: 95%;
+    padding: 0.35rem 0.8rem !important;
+  }
+
+  .logoImg {
+    height: 42px;
+  }
+}

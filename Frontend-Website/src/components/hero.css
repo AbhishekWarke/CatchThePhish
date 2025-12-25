@@ -1,0 +1,481 @@
+/* HERO MAIN WRAPPER */
+:root{
+  --ctp-orange: #ff9e1b;
+  --ctp-orange-dark: #cc7a00;
+  --ctp-orange-darker-hover: rgb(119, 78, 0);
+  --ctp-bg: #111;
+  --ctp-card-bg: #0f0f0f;
+  --ctp-muted: #888;
+  --max-width-desktop: 1100px;
+  --container-padding: 16px;
+  --radius: 12px;
+}
+
+/* base resets for the component area to reduce surprises */
+.hero, .search-container, .result-box, .detail-box {
+  box-sizing: border-box;
+}
+
+/* HERO area */
+.hero {
+  width: 100%;
+  padding-top: 80px;
+  text-align: center;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* WHITE HEADING - use clamp for responsive scaling */
+.hero-heading {
+  font-size: clamp(28px, 5vw, 60px);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 32px;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  max-width: var(--max-width-desktop);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---- spinner + basic button layout ---- */
+.search-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: visible;
+}
+
+/* small circular spinner (base) */
+.ctp-spinner {
+  display: inline-block;
+  box-sizing: border-box;
+  border: 3px solid rgba(0,0,0,0.12);   /* light track */
+  border-top-color: #0b0b0b;             /* visible dark moving part (fits your palette) */
+  border-radius: 50%;
+  animation: ctp-spin 0.9s linear infinite;
+  flex: 0 0 auto;
+}
+
+/* spinner sizes */
+.ctp-spinner--sm { width: 12px; height: 12px; border-width: 2px; }
+.ctp-spinner--md { width: 16px; height: 16px; border-width: 3px; }
+.ctp-spinner--lg { width: 22px; height: 22px; border-width: 3px; }
+
+/* disabled look */
+.search-btn:disabled { opacity: 0.85; cursor: not-allowed; }
+
+/* keyframes */
+@keyframes ctp-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* brand text colors remain unchanged */
+.catch,
+.phish {
+  color: rgb(254, 188, 66); /* your theme orange */
+}
+
+/* Light aqua blue for "The" */
+.the {
+  color: #93c7ec; /* phishing-water vibe */
+  margin: 0 8px; /* spacing between words */
+}
+
+/* CONTAINER AROUND SEARCH BAR */
+.search-container {
+  width: min(92%, 880px);
+  max-width: 650px;
+  margin: 0 auto;
+  background-color: #2a2a2a;
+  padding: 18px;
+  border-radius: 15px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.48);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+/* subtle lift on hover (desktop) */
+.search-container:hover { transform: translateY(-2px); }
+
+/* FORM ROW */
+.search-form {
+  width: 100%;
+  gap: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SEARCH INPUT (BOOTSTRAP OVERRIDE) */
+.search-input {
+  background-color: #3b3b3b !important;
+  color: white !important;
+  border: none !important;
+  padding: 14px 18px !important;
+  border-radius: 10px !important;
+  font-size: 16px !important;
+  flex: 1 1 auto; /* allow input to grow/shrink */
+  min-width: 0; /* prevents overflow inside flex */
+  outline: none;
+}
+
+/* accessibility focus ring */
+.search-input:focus {
+  box-shadow: 0 0 0 4px rgba(255,158,27,0.12);
+}
+
+/* placeholder */
+.search-input::placeholder {
+  color: #cfcfcf !important;
+}
+
+/* GREEN BUTTON (PRIMARY) */
+/* This is the button base used; dynamic states handled by extra classes */
+.dynamic-search-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--ctp-orange);
+  color: #0b0b0b;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  flex: 0 0 auto;
+  margin-left: 8px;
+  white-space: nowrap;
+  min-height: 44px;
+  transition: background-color 160ms ease, color 160ms ease, transform 120ms ease;
+  will-change: transform, background-color;
+}
+
+/* busy variant (applies while checking) */
+.busy-search-btn {
+  background: #f39c12 !important;
+}
+
+/* Hover effect (desktop) for main search button */
+.dynamic-search-btn:hover:not(:disabled) {
+  background-color: var(--ctp-orange-darker-hover) !important;
+  color: rgb(255, 255, 255) !important;
+  transform: translateY(-2px);
+}
+
+/* ----------------------------- */
+/* RESULT BOX / DYNAMIC STYLES  */
+/* ----------------------------- */
+
+/* wrapper around the result content (we set CSS variables on this via ref) */
+.result-wrapper {
+  margin-top: 18px;
+  max-width: min(95%, var(--max-width-desktop));
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+/* the main result card */
+.result-box {
+  padding: 16px;
+  border-radius: 10px;
+  background: var(--ctp-bg);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(252, 252, 252, 0.515);
+  transition: background-color 180ms ease;
+}
+
+/* first block spacing */
+.output-section {
+  margin-bottom: 8px;
+}
+
+/* result label: color uses CSS variable set dynamically from JS */
+.result-label {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ctp-result-color, var(--ctp-orange));
+  word-break: break-word;
+}
+
+/* static small text */
+.risk-text {
+  margin-top: 6px;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.short-interpretation {
+  margin-top: 6px;
+  color: #bbb;
+  font-size: 14px;
+}
+
+.override-message {
+  margin-top: 10px;
+  margin-bottom: 12px;
+  color: #9fbfbf;
+  font-size: 13px;
+}
+
+/* risk bar header layout */
+.risk-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+  align-items: flex-start;
+}
+
+/* left side (bar + interpretation) */
+.risk-bar-left {
+  flex: 1;
+  min-width: 0;
+}
+
+/* right side (button) */
+.risk-bar-right {
+  text-align: right;
+  margin-left: 12px;
+}
+
+/* track */
+.risk-track {
+  height: 10px;
+  background: #222;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* fill — width controlled by CSS variable (set from JS) */
+/* We expect --ctp-risk-percent to be a number like "73" (no percent) */
+.risk-fill {
+  height: 100%;
+  width: calc(var(--ctp-risk-percent, 0) * 1%);
+  background: var(--ctp-result-color, var(--ctp-orange));
+  transition: width 300ms ease;
+}
+
+/* Interpretation small text */
+.interpretation-small {
+  margin-top: 12px;
+  color: #999;
+  font-size: 13px;
+  text-align: left;
+}
+
+/* details button */
+.details-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--ctp-orange);
+  color: #0b0b0b;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 180ms ease, color 180ms ease, transform 120ms ease;
+  outline: none;
+}
+
+/* details button — hover / focus / active (makes bg darker and text white) */
+.details-btn:hover,
+.details-btn:focus,
+.details-btn:active {
+  background-color: var(--ctp-orange-dark); /* darker/orange-brown — "light dark" tone */
+  color: #ffffff;            /* text becomes white */
+  transform: translateY(-1px);
+}
+
+/* ensure keyboard focus is visible for accessibility */
+.details-btn:focus {
+  box-shadow: 0 0 0 3px rgba(204, 122, 0, 0.18);
+}
+
+/* on touch devices the :active state gives quick feedback */
+.details-btn:active {
+  transform: translateY(0);
+}
+
+/* small caution note */
+.caution-text {
+  margin-top: 18px;
+  color: var(--ctp-muted);
+  font-size: 12px;
+}
+
+/* Detailed report container */
+.detailed-report {
+  margin-top: 12px;
+  color: #ddd;
+  display: grid;
+  gap: 12px;
+}
+
+/* detail card */
+.detail-box {
+  background: var(--ctp-card-bg);
+  padding: 14px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(249, 184, 45, 0.199);
+}
+
+/* headings inside details */
+.detail-heading {
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+/* spacing helpers */
+.summary-line { margin-bottom: 8px; }
+.primary-reasons { margin-top: 8px; }
+.recommended-actions { margin-top: 10px; }
+
+/* reason list */
+.reasons-list {
+  margin-top: 6px;
+  padding-left: 18px;
+  line-height: 1.45;
+}
+
+/* feature table */
+.feature-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #ddd;
+  table-layout: fixed;
+}
+
+.feature-table td {
+  padding: 8px 10px;
+  vertical-align: top;
+  word-break: break-all;
+}
+
+.feature-key { width: 38%; font-weight: 600; padding-right: 6px; }
+.feature-val { width: 62%; }
+
+/* ----------------------------- */
+/* RESPONSIVE ADJUSTMENTS (mobile) */
+/* ----------------------------- */
+
+/* Mobile-first base changes */
+@media (max-width: 576px) {
+  .hero { padding-top: 40px; }
+  .hero-heading {
+    font-size: clamp(20px, 7vw, 28px);
+    margin-bottom: 18px;
+    line-height: 1.08;
+  }
+
+  .search-container {
+    width: 96%;
+    max-width: 720px;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  }
+
+  /* Stack input and button vertically for narrow screens */
+  .search-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .search-input {
+    padding: 12px 14px !important;
+    font-size: 15px !important;
+    border-radius: 10px !important;
+  }
+
+  .dynamic-search-btn {
+    width: 100%;
+    padding: 12px 14px;
+    margin-left: 0;
+    font-size: 15px !important;
+    border-radius: 10px;
+  }
+
+  /* result card breathing room */
+  .result-box {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .result-label { font-size: 18px; word-break: break-word; }
+  .risk-text, .short-interpretation { font-size: 13px; }
+  .override-message { font-size: 13px; }
+
+  /* stack risk bar and button vertically for very small screens */
+  .risk-bar-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .risk-bar-right {
+    text-align: left;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .details-btn {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+  }
+
+  /* detail-box spacing more compact */
+  .detail-box { padding: 12px; border-radius: 10px; }
+
+  /* feature table becomes stacked list for readability */
+  .feature-table { display: block; }
+  .feature-table tbody { display: block; }
+  .feature-table tr { display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 8px; margin-bottom: 8px; }
+  .feature-key, .feature-val { width: 100%; display: block; }
+  .feature-key { opacity: 0.95; font-size: 13px; }
+  .feature-val { color: #ddd; font-size: 14px; }
+}
+
+/* Small devices + larger phones (phablet) */
+@media (min-width: 577px) and (max-width: 900px) {
+  .hero { padding-top: 56px; }
+  .hero-heading { font-size: clamp(28px, 6.5vw, 40px); margin-bottom: 22px; }
+  .search-container { width: 90%; max-width: 740px; padding: 14px; }
+  .search-form { flex-direction: row; gap: 10px; }
+  .search-input { font-size: 15px !important; padding: 12px 14px !important; }
+  .dynamic-search-btn { padding: 12px 18px !important; margin-left: 6px; min-height: 46px; }
+
+  .result-box { padding: 14px; }
+  .result-label { font-size: 20px; }
+  .override-message { font-size: 13px; }
+
+  /* feature table: keep columns but improve spacing */
+  .feature-table td { padding: 8px 10px; }
+}
+
+/* Medium and up: keep your original desktop feel but make heading fluid */
+@media (min-width: 901px) {
+  .hero-heading { font-size: clamp(40px, 4.5vw, 60px); }
+  .search-container { width: 80%; max-width: 650px; padding: 18px; }
+  .search-form { flex-direction: row; }
+  .search-input { font-size: 16px !important; }
+  .dynamic-search-btn { font-size: 16px !important; }
+
+  /* result area columns layout for large screens (if you want to place side-by-side later) */
+  .result-wrapper { display: block; }
+  .detail-box { max-width: 100%; }
+}
+
+/* Accessibility helper: reduce motion if user prefers it */
+@media (prefers-reduced-motion: reduce) {
+  .dynamic-search-btn, .details-btn { transition: none !important; transform: none !important; }
+  .ctp-spinner { animation: none !important; }
+  .risk-fill { transition: none !important; }
+}
