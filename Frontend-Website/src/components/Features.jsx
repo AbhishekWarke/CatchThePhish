@@ -2,7 +2,8 @@ import React from "react";
 import { GiSpeedometer } from "react-icons/gi";
 import { TbNetwork } from "react-icons/tb";
 import { FaChartBar, FaThumbsUp } from "react-icons/fa";
-import "./features.css";
+import "./Features.css";
+
 
 export default function Features() {
   const items = [
